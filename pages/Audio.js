@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 class Audio extends Component {
 	constructor(props) {
 		super(props);
+		this.state = { player: '' };
 	}
 	playHandler = () => {
 		if (this.state.player) {
@@ -31,7 +32,7 @@ class Audio extends Component {
 				this.state.player.stop();
 				if (sectionsProps.length != 0) {
 					conductor.setTempo(sectionsProps[0][1]);
-					this.state.setState({ player: conductor.finish() });
+					this.setState({ player: conductor.finish() });
 					this.state.player.loop(true);
 					rhythmTimer(sectionsProps[0][0]);
 				}
