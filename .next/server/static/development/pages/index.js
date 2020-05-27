@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1558,7 +1558,7 @@ class Audio extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       let piano = conductor.createInstrument('sine');
       piano.note('quarter', 'G3');
       this.setState({
-        player: this.state.player + 1
+        player: conductor.finish()
       });
       console.log(this.state.player);
       this.state.player.loop(true);
@@ -1572,17 +1572,15 @@ class Audio extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
 
           if (sectionsProps.length != 0) {
             conductor.setTempo(sectionsProps[0][1]);
-            this.state.player = conductor.finish();
+            this.state.setState({
+              player: conductor.finish()
+            });
             this.state.player.loop(true);
             rhythmTimer(sectionsProps[0][0]);
           }
         }, time);
       }
     });
-
-    this.state = {
-      player: 2
-    };
   }
 
   render() {
@@ -1591,7 +1589,7 @@ class Audio extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45,
+        lineNumber: 42,
         columnNumber: 10
       }
     }, "click Me");
@@ -1864,7 +1862,7 @@ class Rhythm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

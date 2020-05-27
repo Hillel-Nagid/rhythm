@@ -4540,7 +4540,7 @@ var Audio = /*#__PURE__*/function (_Component) {
       piano.note('quarter', 'G3');
 
       _this.setState({
-        player: _this.state.player + 1
+        player: conductor.finish()
       });
 
       console.log(_this.state.player);
@@ -4559,7 +4559,10 @@ var Audio = /*#__PURE__*/function (_Component) {
 
           if (sectionsProps.length != 0) {
             conductor.setTempo(sectionsProps[0][1]);
-            _this2.state.player = conductor.finish();
+
+            _this2.state.setState({
+              player: conductor.finish()
+            });
 
             _this2.state.player.loop(true);
 
@@ -4569,9 +4572,6 @@ var Audio = /*#__PURE__*/function (_Component) {
       }
     });
 
-    _this.state = {
-      player: 2
-    };
     return _this;
   }
 
@@ -4583,7 +4583,7 @@ var Audio = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45,
+          lineNumber: 42,
           columnNumber: 10
         }
       }, "click Me");
@@ -4930,7 +4930,7 @@ var Rhythm = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5CUsers%5Chillel%20nagid%5CDesktop%5Crhythm%5Cpages%5Cindex.js ***!
   \************************************************************************************************************************************/
@@ -4953,5 +4953,5 @@ module.exports = dll_c2e10d183b950a67d9e7;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
