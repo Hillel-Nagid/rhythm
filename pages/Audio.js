@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 class Audio extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { player: '' };
+		this.state = { player: null };
 	}
 	playHandler = () => {
-		if (typeof this.state.player == 'function') {
+		if (this.state.player) {
 			console.log(this.state.player);
 			this.state.player.stop();
 		}
@@ -27,19 +27,19 @@ class Audio extends Component {
 			rhythmTimer(sectionsProps[0][0]);
 		});
 
-		function rhythmTimer(time) {
-			Audio.state.player.play();
+		let rhythmTimer = (time) => {
+			this.state.player.play();
 			sectionsProps.shift();
 			setTimeout(() => {
-				Audio.state.player.stop();
+				this.state.player.stop();
 				if (sectionsProps.length != 0) {
 					conductor.setTempo(sectionsProps[0][1]);
-					Audio.setState({ player: conductor.finish() });
-					Audio.state.player.loop(true);
+					this.setState({ player: conductor.finish() });
+					this.state.player.loop(true);
 					rhythmTimer(sectionsProps[0][0]);
 				}
 			}, time);
-		}
+		};
 	};
 	render() {
 		return <p onClick={this.playHandler}>click Me</p>;
