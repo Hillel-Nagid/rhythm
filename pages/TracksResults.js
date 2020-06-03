@@ -29,7 +29,6 @@ const TracksResults = (props) => {
 					</li>
 				);
 			})}
-			{}
 			<Audio analysis={sa}></Audio>
 		</ul>
 	);
