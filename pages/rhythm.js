@@ -8,7 +8,7 @@ class Rhythm extends Component {
 		this.state = {
 			token: null,
 			track_list: [],
-			query: ''
+			query: '',
 		};
 	}
 
@@ -32,14 +32,14 @@ class Rhythm extends Component {
 				`https://api.spotify.com/v1/search?q=${this.state.query}&type=track&limit=5`,
 				{
 					headers: {
-						Authorization: `${this.state.token_type} ${this.state.token}`
-					}
+						Authorization: `${this.state.token_type} ${this.state.token}`,
+					},
 				}
 			)
-			.then(data => {
+			.then((data) => {
 				this.setState({ track_list: data.data.tracks.items });
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(err);
 			});
 	};
@@ -59,7 +59,7 @@ class Rhythm extends Component {
 			<>
 				{!this.state.token && (
 					<button>
-						<a href='https://accounts.spotify.com/authorize?client_id=58b9c4063c904cda87af80186a732f01&redirect_uri=http:%2F%2Flocalhost:3000&response_type=token'>
+						<a href='https://accounts.spotify.com/authorize?client_id=58b9c4063c904cda87af80186a732f01&redirect_uri=http:%2F%2Frhythm.now.sh&response_type=token'>
 							Login With Spotify
 						</a>
 					</button>
@@ -67,7 +67,7 @@ class Rhythm extends Component {
 				{this.state.token && (
 					<>
 						<input
-							ref={input => (this.search = input)}
+							ref={(input) => (this.search = input)}
 							onChange={this.changeHandler}
 						/>
 						<TracksResults
