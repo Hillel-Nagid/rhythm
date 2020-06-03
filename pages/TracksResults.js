@@ -22,13 +22,15 @@ const TracksResults = (props) => {
 
 	return (
 		<ul ref={trackRef}>
-			{props.tracks.map((track) => {
-				return (
-					<li id={track.id} key={track.id} onClick={getAnalysis}>
-						{track.name} - {track.artists[0].name} ({track.popularity})
-					</li>
-				);
-			})}
+			{props.tracks
+				? props.tracks.map((track) => {
+						return (
+							<li id={track.id} key={track.id} onClick={getAnalysis}>
+								{track.name} - {track.artists[0].name} ({track.popularity})
+							</li>
+						);
+				  })
+				: ''}
 			<Audio analysis={sa}></Audio>
 		</ul>
 	);
