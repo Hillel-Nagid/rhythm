@@ -8,7 +8,6 @@ class Audio extends Component {
 	}
 	playHandler = () => {
 		if (this.state.player) {
-			console.log(this.state.player);
 			this.state.player.stop();
 		}
 		let conductor = new BandJS();
@@ -16,13 +15,11 @@ class Audio extends Component {
 		this.props.analysis.sections.forEach((section) => {
 			sectionsProps.push([section.duration * 1000, section.tempo]);
 		});
-		console.log(sectionsProps);
 		conductor.setTimeSignature(4, 4);
 		conductor.setTempo(sectionsProps[0][1]);
 		let piano = conductor.createInstrument('sine');
 		piano.note('quarter', 'G3');
 		this.setState({ player: conductor.finish() }, () => {
-			console.log(this.state.player);
 			this.state.player.loop(true);
 			rhythmTimer(sectionsProps[0][0]);
 		});
